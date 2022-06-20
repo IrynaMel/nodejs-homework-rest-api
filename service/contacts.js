@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
-const filePath = require("./path");
+const filePath = require("../utils/path");
 const crypto = require("crypto");
-const updateFile = require("./updateFile");
+const updateFile = require("../utils/updateFile");
 
 const listContacts = async () => {
   const data = await fs.readFile(filePath);

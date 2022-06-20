@@ -1,57 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const contactsOperations = require("../../models/contacts");
 const { validation } = require("../../validation/validation");
+const controllers = require("../../controllers/controllers");
 
-router.get("/", async (req, res, next) => {
-  const list = await contactsOperations.listContacts();
-  res.status(200).json({
-    result: list,
-  });
-});
+router.get("/", controllers.getContacts);
 
-router.get("/:contactId", async (req, res, next) => {
-  const { contactId } = req.params;
-  const contact = await contactsOperations.getContactById(contactId);
-  if (!contact) {
-    res.status(404).json({
-      message: "Not found",
-    });
-  } else {
-    res.status(200).json({
-      result: contact,
-    });
-  }
-});
+router.get("/:contactId", controllers.getContact);
 
-router.post("/", validation, async (req, res, next) => {
-  const newContact = await contactsOperations.addContact(req.body);
-  res.status(200).json({
-    result: newContact,
-  });
-});
+router.post("/", validation, controllers.postContact);
 
-router.delete("/:contactId", async (req, res, next) => {
-  const { contactId } = req.params;
-  const removedContact = await contactsOperations.removeContact(contactId);
-  if (!removedContact) {
-    res.status(404).json({
-      message: "Not found",
-    });
-  } else {
-    res.status(200).json({
-      message: "contact deleted",
-    });
-  }
-});
+router.delete("/:contactId", controllers.deleteContact);
 
-router.put("/:contactId", validation, async (req, res, next) => {
-  const { contactId } = req.params;
-
-  const contact = await contactsOperations.updateContact(contactId, req.body);
-  res.status(200).json({
-    result: contact,
-  });
-});
+router.put("/:contactId", validation, controllers.putContact);
 
 module.exports = router;
