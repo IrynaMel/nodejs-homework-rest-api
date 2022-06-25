@@ -2,10 +2,14 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const contactsRouter = require("./routes/api/contacts");
-const DB_HOST =
-  "mongodb+srv://Iryna:Iryna2706@cluster0.hej5ddz.mongodb.net/db-contacts?retryWrites=true&w=majority";
+const { DB_HOST } = process.env;
+// const DB_HOST =
+//   "mongodb+srv://Iryna:Iryna2706@cluster0.hej5ddz.mongodb.net/db-contacts?retryWrites=true&w=majority";
 
 const app = express();
 
