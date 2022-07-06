@@ -6,6 +6,7 @@ const userSchema = Schema(
   {
     name: {
       type: String,
+      require: true,
     },
     password: {
       type: String,
@@ -24,6 +25,10 @@ const userSchema = Schema(
     token: {
       type: String,
       default: null,
+    },
+    avatarUrl: {
+      avatarUrl: String,
+      // require: true,
     },
   },
   { versionKey: false, timestamps: true }
