@@ -6,7 +6,7 @@ const userSchema = Schema(
   {
     name: {
       type: String,
-      require: true,
+      require: [true, "Name is required"],
     },
     password: {
       type: String,
@@ -17,6 +17,10 @@ const userSchema = Schema(
       required: [true, "Email is required"],
       unique: true,
     },
+    avatarURL: {
+      avatarURL: String,
+      // required: true,
+    },
     subscription: {
       type: String,
       enum: ["starter", "pro", "business"],
@@ -25,10 +29,6 @@ const userSchema = Schema(
     token: {
       type: String,
       default: null,
-    },
-    avatarUrl: {
-      avatarUrl: String,
-      // require: true,
     },
   },
   { versionKey: false, timestamps: true }
