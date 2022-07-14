@@ -6,6 +6,7 @@ const userSchema = Schema(
   {
     name: {
       type: String,
+      require: [true, "Name is required"],
     },
     password: {
       type: String,
@@ -15,6 +16,10 @@ const userSchema = Schema(
       type: String,
       required: [true, "Email is required"],
       unique: true,
+    },
+    avatarURL: {
+      avatarURL: String,
+      // required: true,
     },
     subscription: {
       type: String,
